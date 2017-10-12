@@ -17,6 +17,8 @@ module Doorkeeper
     field :expires_in, type: Integer
     field :revoked_at, type: DateTime
 
+    belongs_to :resource_owner, class_name: 'Doorkeeper::OauthResourceOwner'
+
     index({ token: 1 }, { unique: true })
     index({ refresh_token: 1 }, { unique: true, sparse: true })
 
@@ -32,6 +34,15 @@ module Doorkeeper
 
     def self.created_at_desc
       [:created_at, :desc]
+    end
+
+    def as_json(*)
+      super.except!(:resource_owner_id).merge!(
+        owner: {
+          id: resource_owner.try(:owner_id),
+          type: resource_owner.try(:owner_type).try(:tableize)
+        }
+      )
     end
   end
 end

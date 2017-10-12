@@ -52,6 +52,8 @@ require 'doorkeeper/orm/mongoid2'
 require 'doorkeeper/orm/mongoid3'
 require 'doorkeeper/orm/mongoid4'
 
+require 'doorkeeper/services/oauth_resource_owner_authenticator'
+
 module Doorkeeper
   def self.configured?
     @config.present?

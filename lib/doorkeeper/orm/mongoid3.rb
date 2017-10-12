@@ -5,6 +5,7 @@ module Doorkeeper
         require 'doorkeeper/orm/mongoid3/access_grant'
         require 'doorkeeper/orm/mongoid3/access_token'
         require 'doorkeeper/orm/mongoid3/application'
+        require 'doorkeeper/orm/mongoid3/oauth_resource_owner'
       end
 
       def self.initialize_application_owner!
